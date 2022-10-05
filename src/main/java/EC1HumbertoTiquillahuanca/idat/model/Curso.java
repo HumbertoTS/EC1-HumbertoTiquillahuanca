@@ -1,4 +1,5 @@
 package EC1HumbertoTiquillahuanca.idat.model;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "curso")
 public class Curso {
@@ -23,20 +23,14 @@ public class Curso {
 	private Integer idCurso;
 	private String curso;
 	private String descripcion;
-	
-	@ManyToMany(mappedBy = "curso", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+
+	@ManyToMany(mappedBy = "curso", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private List<Profesor> profesor = new ArrayList<>();
-	
+
 	@ManyToOne
-	@JoinColumn(
-			name="id_malla",
-			nullable = false,
-			unique = true,
-			foreignKey = @ForeignKey(foreignKeyDefinition = "foreign key (id_malla) references mallacurricular(id_malla)")
-	)
-	
+	@JoinColumn(name = "id_malla", nullable = false, unique = true, foreignKey = @ForeignKey(foreignKeyDefinition = "foreign key (id_malla) references mallacurricular(id_malla)"))
 	private MallaCurricular malla;
-	
+
 	public Integer getIdCurso() {
 		return idCurso;
 	}
